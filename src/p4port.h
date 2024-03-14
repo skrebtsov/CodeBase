@@ -14,8 +14,6 @@
     #include <netinet/tcp.h>
     #include <arpa/inet.h>
     #include <netdb.h>
-//    #include <sys/socket.h>
-//    #include <sys/types.h>
     #include <sys/ioctl.h>
 
     extern int h_errno;
