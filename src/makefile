@@ -35,7 +35,7 @@ OBJS = b4block.o c4bcd.o c4blast.o c4buffer.o c4.o c4code.o c4com2.o c4com.o c4c
     s4init.o s4initfr.o s4next.o s4quick.o s4signal.o s4sort.o sema4.o u4name.o u4util.o
 #   e4str2.o p4pascal.o v4basic.o
 
-OBJS_PORT = char.o str.o
+OBJS_PORT = char.o str.o itoa.o
 
 all: $(OBJS_PORT) $(OBJS)
 	$(AR) rc ../lib/$(LIB_CB)-$(VER_CB).a $(OBJS_PORT) $(OBJS)
@@ -62,6 +62,8 @@ char.o: port/char.c
 	$(CC) $(CFLAGS) -c port/char.c
 str.o: port/str.c
 	$(CC) $(CFLAGS) -c port/str.c
+itoa.o: port/itoa.c
+	$(CC) $(CFLAGS) -c port/itoa.c
 
 b4block.o: b4block.c
 	$(CC) $(CFLAGS) -c b4block.c

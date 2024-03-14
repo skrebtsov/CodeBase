@@ -73,6 +73,18 @@ int address4makeName(C4ADDRESS *address, short *addrLen, unsigned short portNo, 
    #endif
    phe = gethostbyname(machineName) ;
    if (phe == NULL )
+   #ifndef S4WINSOCK
+      switch (h_errno)
+      {
+         case HOST_NOT_FOUND :
+         case TRY_AGAIN :
+            return r4hostNotFound;
+         case NO_ADDRESS :
+            return r4hostUnavailable;
+         case NO_RECOVERY :
+            return r4errNetwork;
+      }
+   #else
       switch (WSAGetLastError())
       {
          case WSAENETDOWN :
@@ -86,6 +98,7 @@ int address4makeName(C4ADDRESS *address, short *addrLen, unsigned short portNo, 
          default :
             return r4noConnect ;
       }
+   #endif
    memcpy( (char *)&(destSin->sin_addr), phe->h_addr, phe->h_length ) ;
    return r4success;
 }
@@ -418,6 +431,26 @@ int connect4lowConnectConnect(CONNECT4LOW *connection, void *address, int addrLe
       if ( rc < 0 )
    #endif
    {
+      #ifndef S4WINSOCK
+      switch (errno)
+      {
+         case ECONNREFUSED :
+            rc = r4noServerOnHost;
+            break;
+         case ETIMEDOUT :
+            rc = r4connectTimeOut;
+            break;
+         case ENETUNREACH :
+         case EINPROGRESS :
+            rc = r4errNetwork;
+            break;
+         case EADDRINUSE :
+            rc = r4hostUnavailable;
+            break;
+         default :
+            rc = r4noConnect;
+      }
+      #else
       switch (WSAGetLastError())
       {
          case WSAENETDOWN :
@@ -441,6 +474,7 @@ int connect4lowConnectConnect(CONNECT4LOW *connection, void *address, int addrLe
          default :
             rc = r4noConnect ;
       }
+      #endif
       connect4lowError(connection) ;
       return rc ;
    }

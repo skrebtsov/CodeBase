@@ -9,11 +9,24 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
+#ifndef S4STAND_ALONE
+    #include <netinet/in.h>
+    #include <netinet/tcp.h>
+    #include <arpa/inet.h>
+    #include <netdb.h>
+//    #include <sys/socket.h>
+//    #include <sys/types.h>
+    #include <sys/ioctl.h>
+
+    extern int h_errno;
+#endif
+
 #ifdef WINDIR
     #define S4NO_FCVT
 #endif
 
 #include "port/str.h"
+#include "port/itoa.h"
 
 #define S4NO_FILELENGTH
 #define S4NO_CHSIZE
