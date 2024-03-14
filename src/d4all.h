@@ -8,7 +8,9 @@
 
 /* CodeBase configuration */
    #define S4CLIENT
-//   #define S4STAND_ALONE
+#ifndef S4CLIENT
+   #define S4STAND_ALONE
+#endif
 
 /* Index File compatibility options */
 #ifndef S4CLIENT
