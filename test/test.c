@@ -16,13 +16,13 @@ FIELD4INFO fields [] =
 
 TAG4INFO tags [] =
 {
-    { "name", "NAME", 0, 0, 0},
+    { "name", "NAME+STR(AGE)", 0, 0, 0},
     NULL
 };
 
 TAG4INFO bank_tags [] =
 {
-    { "mfo", "MFO", 0, 0, 0},
+    { "mfo", "MFO+MFOS", 0, 0, 0},
     { "ks", "KS", 0, 0, 0},
     { "adr", "ADR", 0, 0, 0},
     NULL

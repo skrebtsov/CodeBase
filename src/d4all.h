@@ -7,7 +7,7 @@
 /**********            USER SWITCH SETTINGS AREA            ***********/
 
 /* CodeBase configuration */
-   #define S4CLIENT
+//   #define S4CLIENT
 #ifndef S4CLIENT
    #define S4STAND_ALONE
 #endif
