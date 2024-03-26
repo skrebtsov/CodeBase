@@ -58,9 +58,7 @@ int main( void)
 
     code4init( &cb) ;
     cb.safety = 0 ;
-#ifdef N4OTHER
-    cb.autoOpen = 0;
-#endif
+    cb.autoOpen = 0; /* 1 - Для создания индексной группы .cgp */
 
     data = d4create( &cb, "test", fields, tags) ;
     if( !data ) {
