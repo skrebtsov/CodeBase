@@ -905,11 +905,17 @@ static INDEX4 *i4createLow( DATA4 *d4, const char *fileName, const TAG4INFO *tag
       for ( i = 0; tagData[i].name; i++ )
       {
          u4namePiece(name, 10, tagData[i].name, 0, 0 ) ;
-         c4upper(name) ;
+         #ifndef S4CASE_SEN
+            c4upper(name) ;
+         #endif
          flen = strlen(name) ;
          file4seqWrite( &seqwrite, tagData[i].name, strlen( tagData[i].name ) - flen ) ;
          file4seqWrite( &seqwrite, name, flen ) ;
-         file4seqWrite( &seqwrite, "\r\n", 2 ) ;
+         #ifdef S4UNIX
+            file4seqWrite( &seqwrite, "\n", 1 ) ;
+         #else
+            file4seqWrite( &seqwrite, "\r\n", 2 ) ;
+         #endif
       }
 
       file4seqWriteFlush( &seqwrite ) ;
@@ -1109,11 +1115,10 @@ TAG4 *S4FUNCTION t4create( DATA4 *d4, const TAG4INFO *tagData, INDEX4 *i4ndx, in
    else
       u4ncpy( buf, tagData->name, sizeof(buf) - 1 ) ;
 
-   c4upper(buf) ;
-
    #ifdef S4CASE_SEN
       u4nameExt( buf, sizeof(buf), "ntx", 0 ) ;
    #else
+      c4upper(buf) ;
       u4nameExt( buf, sizeof(buf), "NTX", 0 ) ;
    #endif
 

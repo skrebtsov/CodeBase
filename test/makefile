@@ -22,11 +22,11 @@ TODOS=dos2unix
 LIBS	=
 SUBDIRS	=
 
-SRCS = test.c d4simple.c bank.c
+SRCS = test.c simple.c bank.c
 
 all: $(SRCS)
 	$(CC) $(CFLAGS) -o test.bin test.c conv.c $(LDFLAGS)
-	$(CC) $(CFLAGS) -o d4simple.bin d4simple.c $(LDFLAGS)
+	$(CC) $(CFLAGS) -o simple.bin simple.c $(LDFLAGS)
 	$(CC) $(CFLAGS) -o bank.bin bank.c $(LDFLAGS)
 
 fromdos:
@@ -44,4 +44,5 @@ touch:
 	touch *.h
 
 clean:
-	rm -f core *.[oas] *~ *.bin *.log *.cgp *.ntx *.cdx *test.dbf
+	rm -f core *.[oas] *~ *.bin *.log *.cgp *.ntx *.cdx
+	rm -f *est.dbf simple.dbf

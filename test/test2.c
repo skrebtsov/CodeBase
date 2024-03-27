@@ -3,7 +3,8 @@
 FIELD4INFO fields[ ] =
 {
     { "NAME", 'C', 20, 0 },
-    { "AGE", 'N', 3, 0 }
+    { "AGE", 'N', 3, 0 },
+    NULL
 } ;
 
 void main( )

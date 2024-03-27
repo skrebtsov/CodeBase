@@ -30,7 +30,9 @@ TAG4 *S4FUNCTION d4tag( DATA4 *d4, const char* const tagName )
       #endif
 
       u4ncpy( tagLookup, tagName, sizeof( tagLookup ) ) ;
-      c4upper( tagLookup ) ;
+      #ifndef S4CASE_SEN
+         c4upper( tagLookup ) ;
+      #endif
 
       for( tagOn = 0 ;; )
       {

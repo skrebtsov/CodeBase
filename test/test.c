@@ -22,9 +22,9 @@ TAG4INFO tags [] =
 
 TAG4INFO bank_tags [] =
 {
-    { "mfo", "MFO+MFOS", 0, 0, 0},
-    { "ks", "KS", 0, 0, 0},
-    { "adr", "ADR", 0, 0, 0},
+    { "b_Mfo", "MFO+MFOS", 0, 0, 0},
+    { "b_Ks", "KS", 0, 0, 0},
+    { "b_Adr", "ADR", 0, 0, 0},
     NULL
 };
 
@@ -60,12 +60,12 @@ int main( void)
     cb.safety = 0 ;
     cb.autoOpen = 0; /* 1 - Для создания индексной группы .cgp */
 
-    data = d4create( &cb, "test", fields, tags) ;
+    data = d4create( &cb, "Test", fields, tags) ;
     if( !data ) {
-        printf( "Can't create <test.dbf>\n");
+        printf( "Can't create <Test.dbf>\n");
         return -1;
     }
-    printf( "<test.dbf> successfully created\n") ;
+    printf( "<Test.dbf> successfully created\n") ;
     d4close( data);
 
     bank = d4open( &cb, "bank");
@@ -91,14 +91,14 @@ int main( void)
     d4go( bank, 100);
     printf( "bank: recno=%d\n", d4recNo( bank));
 
-    ind_mfo = d4index( bank, "MFO");
+    ind_mfo = d4index( bank, "MFO+MFOS");
     ind_ks = d4index( bank, "KS");
     ind_adr = d4index( bank, "ADR");
 
 #ifdef S4CLIPPER
-    tag_mfo = t4open( bank, ind_mfo, "MFO");
-    tag_ks = t4open( bank, ind_ks, "KS");
-    tag_adr = t4open( bank, ind_adr, "ADR");
+    tag_mfo = t4open( bank, ind_mfo, "b_Mfo");
+    tag_ks = t4open( bank, ind_ks, "b_Ks");
+    tag_adr = t4open( bank, ind_adr, "b_Adr");
 
     if( cb.errorCode < 0) {
         printf( "ERROR! %d\n", cb.errorCode);
