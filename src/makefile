@@ -8,20 +8,20 @@ endif
 FROMDOS=dos2unix
 TODOS=dos2unix
 
-AS	=as
-LD	=ld
-CC	=gcc
-MAKE	=make
-CPP	=$(CC) -E
-AR	=ar
-STRIP	=strip
-PKGCONF =pkg-config
+AS = as
+LD = ld
+CC = gcc
+MAKE = make
+CPP = $(CC) -E
+AR = ar
+STRIP = strip
+PKGCONF = pkg-config
 
 LIB_CB = libcb
 VER_CB = 6.4
 
-LIBS	=
-SUBDIRS	=
+LIBS =
+SUBDIRS =
 
 OBJS = b4block.o c4bcd.o c4blast.o c4buffer.o c4.o c4code.o c4com2.o c4com.o c4conect.o c4conlow.o c4const.o c4hook.o c4thread.o c4trans.o c4util.o \
     d4append.o d4bottom.o d4close.o d4create.o d4data.o d4date.o d4extra.o d4field.o d4file.o d4flush.o d4fresh.o d4go.o d4index.o d4info.o d4inline.o \
